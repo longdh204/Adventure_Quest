@@ -8,7 +8,10 @@ public class SpriteSorter : MonoBehaviour
     [SerializeField] private SpriteRenderer SpriteRenderer;
     void Start()
     {
-          
+          if(SpriteRenderer == null)
+        {
+            SpriteRenderer = GetComponent<SpriteRenderer>();
+        }
     }
 
     void Update()
