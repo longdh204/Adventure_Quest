@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Element")]
     [SerializeField] private Transform target; // bien luu tham chieu den doi tuong can theo doi
     //[SerializeField] private Vector3 offset; // khoang cach giua camera va doi tuong
-    [Header("Setiings")]
-    [SerializeField] private Vector2 minMaxXY;
+    [SerializeField] private float minX, minY;
+    [SerializeField] private float maxX, maxY;
 
     private void LateUpdate()
     { 
@@ -19,8 +18,8 @@ public class CameraController : MonoBehaviour
         Vector3 targetpositon = target.position; // lay vi tri cua doi tuong can theo doi
         targetpositon.z = -10;
 
-        targetpositon.x = Mathf.Clamp(targetpositon.x, -minMaxXY.x, minMaxXY.x); // gioi han vi tri x cua camera
-        targetpositon.y = Mathf.Clamp(targetpositon.y, -minMaxXY.y, minMaxXY.y); // gioi han vi tri y cua camera
+        targetpositon.x = Mathf.Clamp(targetpositon.x, minX, maxX); // gioi han vi tri x cua camera
+        targetpositon.y = Mathf.Clamp(targetpositon.y, minY, maxY); // gioi han vi tri y cua camera
         transform.position = targetpositon; // dat vi tri cua camera bang vi tri cua doi tuong can theo doi
     }
 }
