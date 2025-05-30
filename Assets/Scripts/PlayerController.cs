@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        rig.velocity = playerJoystick.GetMoveVector() * moveSpeed *Time.deltaTime;
+        rig.velocity = playerJoystick.GetMoveVector() * moveSpeed * Time.deltaTime;
     }
 }
 
