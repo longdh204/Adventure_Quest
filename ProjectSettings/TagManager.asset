@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 585930205
+    locked: 0
+  - name: Ground
+    uniqueID: 377142665
+    locked: 0
+  - name: Flower
+    uniqueID: 186747571
+    locked: 0
+  - name: Brush
+    uniqueID: 2389826691
+    locked: 0
+  - name: Grass
+    uniqueID: 2775812363
+    locked: 0
