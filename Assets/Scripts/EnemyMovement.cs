@@ -11,6 +11,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float playerDetectionRadius;
 
+    [Header("Effect")]
+    [SerializeField] private ParticleSystem enemyDieEffect;
+
     [Header("Debug")]
     [SerializeField] private bool gizmos;
     void Start()
@@ -40,10 +43,13 @@ public class EnemyMovement : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         if(distanceToPlayer <= playerDetectionRadius)
         {
-            // Attack logic here
-            Debug.Log("Enemy is attacking the player!");
-            Destroy(gameObject); // Destroy the enemy after attacking
+            PassAway();
         }
+    }
+    private void PassAway()
+    {
+        enemyDieEffect.transform.SetParent(null);
+        enemyDieEffect.Play();
     }
     // hàm này tạo 1 quả cầu đỏ để hiển thị phạm vi phát hiện người chơi
     private void OnDrawGizmos()
