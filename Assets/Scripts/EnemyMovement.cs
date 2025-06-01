@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
 
-        if(player == null)
+        if (player == null)
         {
             Debug.LogError("Khong co player quai tu destroy");
             Destroy(gameObject);
@@ -50,6 +50,8 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyDieEffect.transform.SetParent(null);
         enemyDieEffect.Play();
+
+        Destroy(gameObject);
     }
     // hàm này tạo 1 quả cầu đỏ để hiển thị phạm vi phát hiện người chơi
     private void OnDrawGizmos()

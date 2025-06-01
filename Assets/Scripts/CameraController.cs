@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
@@ -9,7 +9,11 @@ public class CameraController : MonoBehaviour
     //[SerializeField] private Vector3 offset; // khoang cach giua camera va doi tuong
     [SerializeField] private float minX, minY;
     [SerializeField] private float maxX, maxY;
-
+    // Thêm các property public để truy cập từ script khác
+    public float MinX => minX;
+    public float MinY => minY;
+    public float MaxX => maxX;
+    public float MaxY => maxY;
     private void LateUpdate()
     { 
         //offset = new Vector3(0, 0, -10); // Dat khoang cach giua camera va doi tuong  
