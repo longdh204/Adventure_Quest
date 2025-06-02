@@ -4,32 +4,23 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [Header("Elements")]
     private Player player;
-
-    [Header("Settings")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float playerDetectionRadius;
     [SerializeField] private float expEnemy;
-
-    [Header("Effect")]
     [SerializeField] private ParticleSystem enemyDieEffect;
-
-    [Header("Debug")]
     [SerializeField] private bool gizmos;
     private PlayerController playerController;
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         player = FindObjectOfType<Player>();
-
         if (player == null)
         {
             Debug.LogError("Khong co player quai tu destroy");
             Destroy(gameObject);
         }
     }
-
     void Update()
     {
         FollowPlayer();
@@ -53,11 +44,9 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyDieEffect.transform.SetParent(null);
         enemyDieEffect.Play();
-
         Destroy(gameObject);
         playerController.TotalEXPPlayer(5f);
     }
-    // hàm này tạo 1 quả cầu đỏ để hiển thị phạm vi phát hiện người chơi
     private void OnDrawGizmos()
     {
         if (!gizmos)

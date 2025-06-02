@@ -24,17 +24,11 @@ public class EnemySpawner : MonoBehaviour
             float minY = cameraController.MinY;
             float maxY = cameraController.MaxY;
 
-            // Tạo vị trí sinh ra ngẫu nhiên trong khu vực xác định
             Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0f);
-            //Debug.Log("Vị trí sinh ra quái: " + spawnPosition); // In ra vị trí sinh ra
-
-            // Hien thi vong bao hieu quai xuat hien
             GameObject warning = Instantiate(warningPrefabs, spawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(0.5f); // Chờ một khoảng thời gian trước khi sinh quái
-
             Instantiate(enemyPrefab, spawnPosition, Quaternion.identity); // Sinh quái
             StartCoroutine(ShrinkAndDestroy(warning, 3f)); // Zoom nhỏ warning trong 0.5s rồi xóa
-
             yield return new WaitForSeconds(spawnInterval); // Chờ một khoảng thời gian trước khi sinh quái tiếp theo
         }
     }

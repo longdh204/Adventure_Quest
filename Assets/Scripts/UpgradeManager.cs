@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class UpgradeManager : MonoBehaviour
 {
     void Start()
     {
-        Application.targetFrameRate = 60; // Set the target frame rate to 60 FPS
+        
     }
     void Update()
     {
