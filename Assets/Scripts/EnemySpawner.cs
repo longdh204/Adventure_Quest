@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
 
             // Tạo vị trí sinh ra ngẫu nhiên trong khu vực xác định
             Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0f);
-            Debug.Log("Vị trí sinh ra quái: " + spawnPosition); // In ra vị trí sinh ra
+            //Debug.Log("Vị trí sinh ra quái: " + spawnPosition); // In ra vị trí sinh ra
 
             // Hien thi vong bao hieu quai xuat hien
             GameObject warning = Instantiate(warningPrefabs, spawnPosition, Quaternion.identity);
