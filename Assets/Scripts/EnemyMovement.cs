@@ -10,14 +10,17 @@ public class EnemyMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float playerDetectionRadius;
+    [SerializeField] private float expEnemy;
 
     [Header("Effect")]
     [SerializeField] private ParticleSystem enemyDieEffect;
 
     [Header("Debug")]
     [SerializeField] private bool gizmos;
+    private PlayerController playerController;
     void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
         player = FindObjectOfType<Player>();
 
         if (player == null)
@@ -52,6 +55,7 @@ public class EnemyMovement : MonoBehaviour
         enemyDieEffect.Play();
 
         Destroy(gameObject);
+        playerController.TotalEXPPlayer(5f);
     }
     // hàm này tạo 1 quả cầu đỏ để hiển thị phạm vi phát hiện người chơi
     private void OnDrawGizmos()
@@ -68,6 +72,7 @@ public class EnemyMovement : MonoBehaviour
         if (collision.CompareTag("Weapon1"))
         {
             PassAway();
+            playerController.TotalEXPPlayer(5f);
         }
     }
 }

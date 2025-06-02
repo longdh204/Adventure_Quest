@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth; // Khởi tạo sức khỏe hiện tại
-        currentMana = maxMana; // Khởi tạo năng lượng hiện tại
+        currentMana = 0f; // Khởi tạo năng lượng hiện tại
 
         healthSlider.maxValue = maxHealth; // Thiết lập giá trị tối đa cho thanh máu
         healthSlider.value = currentHealth; // Thiết lập giá trị hiện tại cho thanh máu
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
             if (hitCollider.CompareTag("Enemy"))
             {
                 // Logic khi va cham voi ke thu
-                Debug.Log("Đã phát hiện kẻ thù trong bán kính" + hitCollider.name);
+                //Debug.Log("Đã phát hiện kẻ thù trong bán kính" + hitCollider.name);
             }
         }
     }
@@ -82,12 +82,25 @@ public class PlayerController : MonoBehaviour
             //Die(); // Gọi hàm xử lý khi nhân vật chết
         }
     }
+
+    public void TotalEXPPlayer(float exp)
+    {
+        currentMana += exp; // Giảm sức khỏe hiện tại theo lượng sát thương
+        currentMana = Mathf.Clamp(currentMana, 0, maxMana); // Đảm bảo sức khỏe không âm
+        manaSlider.value = currentMana; // Cập nhật thanh máu
+
+        if (currentMana >= 100)
+        {
+            Debug.Log("Nhân vật đã lên cấp");
+            //Die(); // Gọi hàm xử lý khi nhân vật chết
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Chỉ xử lý khi chính Player va chạm với Enemy
-        if (gameObject.CompareTag("Player") && collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
-            TotalHealthPlayer(10f);
+            TotalHealthPlayer(0f);
         }
     }
 }
