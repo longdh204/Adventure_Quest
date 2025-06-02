@@ -63,4 +63,11 @@ public class EnemyMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon1"))
+        {
+            PassAway();
+        }
+    }
 }

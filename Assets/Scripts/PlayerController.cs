@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rig;
     [SerializeField] private float moveSpeed; // toc do di chuyen cua nhan vat
     [SerializeField] private float detectionRadius = 5f; // ban kinh phat hien va cham
+    [SerializeField] private GameObject weapon;
+    [SerializeField] private float rotationSpeed = 100f; // thoi gian giua cac lan tan cong
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         CheckForEnemies();
+        RotationWeapon();
     }
     private void FixedUpdate()
     {
@@ -36,6 +39,13 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+    private void RotationWeapon()
+    {
+        if (weapon != null)
+        {
+            weapon.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        }
     }
 }
 
