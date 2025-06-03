@@ -6,49 +6,34 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private MobileJoystick playerJoystick; // bien luu tham chieu den MobileJoystick
+    [SerializeField] private UIController uiController;
+    [SerializeField] private MobileJoystick playerJoystick;
     private Rigidbody2D rig;
-    [SerializeField] private float moveSpeed; // toc do di chuyen cua nhan vat
+    [SerializeField] private float moveSpeed;
     [SerializeField] private float detectionRadius = 5f; // ban kinh phat hien va cham
     [SerializeField] private GameObject weapon;
-    [SerializeField] private float rotationSpeed = 100f; // thoi gian giua cac lan tan cong
-    public Slider healthSlider; // thanh mau cua nhan vat
-    [SerializeField] private Slider manaSlider; // thanh mau cua nhan vat
-    
-    [Header ("Health and EXP")]    
-    public TextMeshProUGUI hp;
-    public TextMeshProUGUI mp;
-    public float maxHealth = 100f; // Giá trị tối đa sức khỏe
+    [SerializeField] private float rotationSpeed = 100f; 
+     
+    public float maxHealth = 100f;
     public float currentHealth;
-    public float maxMana = 100f; // Giá trị tối đa năng lượng
+    public float maxMana = 100f;
     public float currentMana;
 
-    [Header("Level")]
     public float levelPlayer = 1;
-    public TextMeshProUGUI currentLevel;
 
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         currentMana = 0f;
-        healthSlider.maxValue = maxHealth; 
-        healthSlider.value = currentHealth;
-        manaSlider.maxValue = maxMana; 
-        manaSlider.value = currentMana;
-
-        // level
-        currentLevel.text = $"{levelPlayer}";
+        uiController.UpdateHealth(currentHealth, maxHealth);
+        uiController.UpdateMana(currentMana, maxMana);
+        uiController.UpdateLevel(levelPlayer);
     }
     private void Update()
     {
-        // enemy
         CheckForEnemies();
         RotationWeapon();
-
-        //hp va exp
-        hp.text = $"{currentHealth}/{maxHealth}";
-        mp.text = $"{currentMana}/{maxMana}";
     }
     private void FixedUpdate()
     {
@@ -81,8 +66,8 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damage; // Giảm sức khỏe hiện tại theo lượng sát thương
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Đảm bảo sức khỏe không âm
-        healthSlider.value = currentHealth; // Cập nhật thanh máu
-        if(currentHealth <= 0)
+        uiController.UpdateHealth(currentHealth, maxHealth);
+        if (currentHealth <= 0)
         {
             Debug.Log("Nhân vật đã chết");
             //Die(); // Gọi hàm xử lý khi nhân vật chết
@@ -92,7 +77,7 @@ public class PlayerController : MonoBehaviour
     {
         currentMana += exp; 
         currentMana = Mathf.Clamp(currentMana, 0, maxMana); // Đảm bảo sức khỏe không âm
-        manaSlider.value = currentMana; // Cập nhật thanh máu
+        uiController.UpdateMana(currentMana, maxMana);
         if (currentMana >= 100)
         {
             //Debug.Log("Nhân vật đã lên cấp");
@@ -110,17 +95,16 @@ public class PlayerController : MonoBehaviour
     public void IncreaseMaxHealth(float amount)
     {
         maxHealth += amount;
-        currentHealth = maxHealth; // Hồi đầy máu
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = currentHealth;
-        hp.text = $"{currentHealth}/{maxHealth}";
+        currentHealth = maxHealth;
+        uiController.UpdateHealth(currentHealth, maxHealth);
         currentMana = 0;
+        uiController.UpdateMana(currentMana, maxMana);
         LevelUP(1);
     }
     public void LevelUP(float levelUp)
     {
         levelPlayer += levelUp;
-        currentLevel.text = $"{levelPlayer}";
+        uiController.UpdateLevel(levelPlayer);
     }
 }
 

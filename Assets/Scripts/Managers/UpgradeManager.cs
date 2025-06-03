@@ -37,16 +37,13 @@ public class UpgradeManager : MonoBehaviour
         {
             UpdateHeath();
         }
-        // Handle the upgrade selection logic here
         Debug.Log("Upgrade selected: " + selectedImage.name);
-        // Hide the upgrade options after selection
-        // Ẩn các tùy chọn sau khi chọn
+
         foreach (Image img in upgradeImages)
         {
             img.gameObject.SetActive(false);
         }
         Time.timeScale = 1f;
-        // Thêm logic nâng cấp cho người chơi
     }
     public void UpdateHeath()
     {
