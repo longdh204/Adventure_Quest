@@ -14,26 +14,39 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100f; // thoi gian giua cac lan tan cong
     public Slider healthSlider; // thanh mau cua nhan vat
     [SerializeField] private Slider manaSlider; // thanh mau cua nhan vat
+    
+    [Header ("Health and EXP")]    
     public TextMeshProUGUI hp;
     public TextMeshProUGUI mp;
     public float maxHealth = 100f; // Giá trị tối đa sức khỏe
     public float currentHealth;
     public float maxMana = 100f; // Giá trị tối đa năng lượng
     public float currentMana;
+
+    [Header("Level")]
+    public float levelPlayer = 1;
+    public TextMeshProUGUI currentLevel;
+
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        currentHealth = maxHealth; // Khởi tạo sức khỏe hiện tại
-        currentMana = 0f; // Khởi tạo năng lượng hiện tại
-        healthSlider.maxValue = maxHealth; // Thiết lập giá trị tối đa cho thanh máu
-        healthSlider.value = currentHealth; // Thiết lập giá trị hiện tại cho thanh máu
-        manaSlider.maxValue = maxMana; // Thiết lập giá trị tối đa cho thanh năng lượng
-        manaSlider.value = currentMana; // Thiết lập giá trị hiện tại cho thanh năng lượng
+        currentHealth = maxHealth;
+        currentMana = 0f;
+        healthSlider.maxValue = maxHealth; 
+        healthSlider.value = currentHealth;
+        manaSlider.maxValue = maxMana; 
+        manaSlider.value = currentMana;
+
+        // level
+        currentLevel.text = $"{levelPlayer}";
     }
     private void Update()
     {
+        // enemy
         CheckForEnemies();
         RotationWeapon();
+
+        //hp va exp
         hp.text = $"{currentHealth}/{maxHealth}";
         mp.text = $"{currentMana}/{maxMana}";
     }
@@ -102,6 +115,12 @@ public class PlayerController : MonoBehaviour
         healthSlider.value = currentHealth;
         hp.text = $"{currentHealth}/{maxHealth}";
         currentMana = 0;
+        LevelUP(1);
+    }
+    public void LevelUP(float levelUp)
+    {
+        levelPlayer += levelUp;
+        currentLevel.text = $"{levelPlayer}";
     }
 }
 
