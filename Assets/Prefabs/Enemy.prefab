@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   playerDetectionRadius: 2
+  expEnemy: 0
   enemyDieEffect: {fileID: 321312487856431170}
   gizmos: 1
 --- !u!61 &8939446497208556749

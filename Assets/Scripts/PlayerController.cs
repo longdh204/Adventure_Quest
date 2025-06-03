@@ -12,14 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float detectionRadius = 5f; // ban kinh phat hien va cham
     [SerializeField] private GameObject weapon;
     [SerializeField] private float rotationSpeed = 100f; // thoi gian giua cac lan tan cong
-    [SerializeField] private Slider healthSlider; // thanh mau cua nhan vat
+    public Slider healthSlider; // thanh mau cua nhan vat
     [SerializeField] private Slider manaSlider; // thanh mau cua nhan vat
-    [SerializeField] private TextMeshProUGUI hp;
-    [SerializeField] private TextMeshProUGUI mp;
-    private float maxHealth = 100f; // Giá trị tối đa sức khỏe
-    private float currentHealth;
-    private float maxMana = 100f; // Giá trị tối đa năng lượng
-    private float currentMana;
+    public TextMeshProUGUI hp;
+    public TextMeshProUGUI mp;
+    public float maxHealth = 100f; // Giá trị tối đa sức khỏe
+    public float currentHealth;
+    public float maxMana = 100f; // Giá trị tối đa năng lượng
+    public float currentMana;
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -93,6 +93,15 @@ public class PlayerController : MonoBehaviour
         {
             TotalHealthPlayer(0f);
         }
+    }
+    public void IncreaseMaxHealth(float amount)
+    {
+        maxHealth += amount;
+        currentHealth = maxHealth; // Hồi đầy máu
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = currentHealth;
+        hp.text = $"{currentHealth}/{maxHealth}";
+        currentMana = 0;
     }
 }
 
