@@ -77,13 +77,14 @@ public class PlayerController : MonoBehaviour
     }
     public void TotalEXPPlayer(float exp)
     {
-        currentMana += exp; // Giảm sức khỏe hiện tại theo lượng sát thương
+        currentMana += exp; 
         currentMana = Mathf.Clamp(currentMana, 0, maxMana); // Đảm bảo sức khỏe không âm
         manaSlider.value = currentMana; // Cập nhật thanh máu
         if (currentMana >= 100)
         {
-            Debug.Log("Nhân vật đã lên cấp");
+            //Debug.Log("Nhân vật đã lên cấp");
             //Die(); // Gọi hàm xử lý khi nhân vật chết
+            FindObjectOfType<UpgradeManager>().ShowUpgradeOptions(); // Hiển thị tùy chọn nâng cấp
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
