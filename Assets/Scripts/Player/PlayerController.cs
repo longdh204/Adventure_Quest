@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     public float currentMana;
     public float levelPlayer = 1;
 
-    // Thêm multiplier cho EXP
     public float expMultiplier = 1f; // Bắt đầu từ 1 (100%)
 
     private void Start()
@@ -38,12 +37,10 @@ public class PlayerController : MonoBehaviour
         CheckForEnemies();
         RotationWeapon();
     }
-
     private void FixedUpdate()
     {
         rig.velocity = playerJoystick.GetMoveVector() * moveSpeed * Time.deltaTime;
     }
-
     private void CheckForEnemies()
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
@@ -55,7 +52,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -97,15 +93,6 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<UpgradeManager>().ShowUpgradeOptions(); // Hiển thị tùy chọn nâng cấp
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Enemy"))
-    //    {
-    //        TotalHealthPlayer(10f);
-    //    }
-    //}
-
     public void IncreaseMaxHealth(float amount)
     {
         maxHealth += amount;
@@ -115,7 +102,6 @@ public class PlayerController : MonoBehaviour
         uiController.UpdateMana(currentMana, maxMana);
         LevelUP(1);
     }
-
     // Thêm hàm mới để tăng EXP multiplier
     public void IncreaseEXPMultiplier(float bonusPercent)
     {

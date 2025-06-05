@@ -18,11 +18,9 @@ public class UpgradeManager : MonoBehaviour
 
         playerController = FindObjectOfType<PlayerController>();
     }
-
     void Update()
     {
     }
-
     public void ShowUpgradeOptions()
     {
         foreach (Image img in upgradeImages)
@@ -71,7 +69,7 @@ public class UpgradeManager : MonoBehaviour
     {
         if (playerController != null)
         {
-            playerController.IncreaseEXPMultiplier(0.1f); // Tăng 10%
+            playerController.IncreaseEXPMultiplier(0.1f);
         }
         else
         {
@@ -82,7 +80,7 @@ public class UpgradeManager : MonoBehaviour
     {
         if (playerController != null)
         {
-            playerController.IncreaseWeapon(100f); // Tăng 10%
+            playerController.IncreaseWeapon(100f);
         }
         else
         {

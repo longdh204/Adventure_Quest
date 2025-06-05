@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private bool gizmos;
     private PlayerController playerController;
 
-    private bool isDead = false; // Thêm flag để tránh double trigger
+    private bool isDead = false;
 
     void Start()
     {
@@ -24,16 +24,14 @@ public class EnemyMovement : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     void Update()
     {
-        if (!isDead) // Chỉ di chuyển khi chưa chết
+        if (!isDead)
         {
             FollowPlayer();
             TryAttack();
         }
     }
-
     private void FollowPlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
@@ -55,25 +53,16 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!isDead && playerController != null)
         {
-            // Gây damage cho player thay vì destroy enemy
-            Debug.Log("Enemy tấn công player!");
-            // Nếu bạn muốn enemy gây damage thì uncomment dòng dưới:
-            // playerController.TotalHealthPlayer(10f);
-
-            // Hoặc nếu muốn enemy chết khi chạm player:
             PassAway();
         }
     }
 
     private void PassAway()
     {
-        if (isDead) return; // Tránh gọi nhiều lần
-
+        if (isDead) return;
         isDead = true;
         enemyDieEffect.transform.SetParent(null);
         enemyDieEffect.Play();
-
-        // Chỉ cộng EXP khi enemy chết do weapon, không phải do chạm player
         Destroy(gameObject);
     }
 
@@ -89,11 +78,10 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isDead) return; // Tránh trigger khi đã chết
+        if (isDead) return;
 
         if (collision.CompareTag("Weapon1"))
         {
-            Debug.Log("Enemy bị weapon tiêu diệt!");
             PassAway();
             if (playerController != null)
             {
@@ -102,13 +90,11 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (collision.CompareTag("Player"))
         {
-            Debug.Log("Enemy chạm vào Player!");
-            // Gây damage cho player
             if (playerController != null)
             {
-                playerController.TotalHealthPlayer(10f); // Gọi hàm public
+                playerController.TotalHealthPlayer(10f);
             }
-            PassAway(); // Enemy chết sau khi tấn công
+            PassAway();
         }
     }
 }
