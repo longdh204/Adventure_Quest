@@ -16790,6 +16790,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &671912440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 671912441}
+  - component: {fileID: 671912442}
+  m_Layer: 0
+  m_Name: Spawn Enemy (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &671912441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671912440}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.04712341, y: 0.47618434, z: 4.335468}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1872002949}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &671912442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671912440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efc7b9d6ffac9e44a02b909d74bddeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 4812382853737221588, guid: 04e27338c93621e4db50d387c51d6861, type: 3}
+  warningPrefabs: {fileID: 2794631830504671377, guid: 1fa465e1b80cf9248af1a731bbb6a641, type: 3}
+  spawnInterval: 1
 --- !u!1 &688554193
 GameObject:
   m_ObjectHideFlags: 0
@@ -19785,12 +19832,13 @@ MonoBehaviour:
   moveSpeed: 7
   detectionRadius: 5
   weapon: {fileID: 1257401255}
-  rotationSpeed: 500
+  rotationSpeed: 1000
   maxHealth: 100
   currentHealth: 0
   maxMana: 100
   currentMana: 0
   levelPlayer: 1
+  expMultiplier: 1
 --- !u!70 &1103391140
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -21112,6 +21160,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1254710966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1254710967}
+  - component: {fileID: 1254710968}
+  m_Layer: 0
+  m_Name: Spawn Enemy (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1254710967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254710966}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.04712341, y: 0.47618434, z: 4.335468}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1872002949}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254710968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254710966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efc7b9d6ffac9e44a02b909d74bddeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 4812382853737221588, guid: 04e27338c93621e4db50d387c51d6861, type: 3}
+  warningPrefabs: {fileID: 2794631830504671377, guid: 1fa465e1b80cf9248af1a731bbb6a641, type: 3}
+  spawnInterval: 1
 --- !u!1 &1257401255
 GameObject:
   m_ObjectHideFlags: 0
@@ -21264,19 +21359,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1261844436}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1306618347}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: OnUpgradeSelected
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1261844436}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1275359258
 GameObject:
   m_ObjectHideFlags: 0
@@ -21956,19 +22039,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1310485861}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1306618347}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: OnUpgradeSelected
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1310485861}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1338847421
 GameObject:
   m_ObjectHideFlags: 0
@@ -23221,19 +23292,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1472856231}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1306618347}
-        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: OnUpgradeSelected
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1472856231}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1488396053
 GameObject:
   m_ObjectHideFlags: 0
@@ -26961,7 +27020,9 @@ Transform:
   - {fileID: 1034970322}
   - {fileID: 701179096}
   - {fileID: 972328919}
+  - {fileID: 1254710967}
   - {fileID: 1959137601}
+  - {fileID: 671912441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1888623680

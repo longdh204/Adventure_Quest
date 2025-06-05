@@ -61,7 +61,6 @@ public class EnemyMovement : MonoBehaviour
         if (collision.CompareTag("Weapon1"))
         {
             PassAway();
-            playerController.TotalEXPPlayer(5f);
         }
     }
 }

@@ -12,14 +12,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float detectionRadius = 5f; // ban kinh phat hien va cham
     [SerializeField] private GameObject weapon;
-    [SerializeField] private float rotationSpeed = 100f; 
-     
+    [SerializeField] private float rotationSpeed = 100f;
+
     public float maxHealth = 100f;
     public float currentHealth;
     public float maxMana = 100f;
     public float currentMana;
-
     public float levelPlayer = 1;
+
+    // Thêm multiplier cho EXP
+    public float expMultiplier = 1f; // Bắt đầu từ 1 (100%)
 
     private void Start()
     {
@@ -30,15 +32,18 @@ public class PlayerController : MonoBehaviour
         uiController.UpdateMana(currentMana, maxMana);
         uiController.UpdateLevel(levelPlayer);
     }
+
     private void Update()
     {
         CheckForEnemies();
         RotationWeapon();
     }
+
     private void FixedUpdate()
     {
         rig.velocity = playerJoystick.GetMoveVector() * moveSpeed * Time.deltaTime;
     }
+
     private void CheckForEnemies()
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectionRadius);
@@ -50,11 +55,13 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
+
     private void RotationWeapon()
     {
         if (weapon != null)
@@ -62,6 +69,7 @@ public class PlayerController : MonoBehaviour
             weapon.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         }
     }
+
     private void TotalHealthPlayer(float damage)
     {
         currentHealth -= damage; // Giảm sức khỏe hiện tại theo lượng sát thương
@@ -73,18 +81,23 @@ public class PlayerController : MonoBehaviour
             //Die(); // Gọi hàm xử lý khi nhân vật chết
         }
     }
+
     public void TotalEXPPlayer(float exp)
     {
-        currentMana += exp; 
-        currentMana = Mathf.Clamp(currentMana, 0, maxMana); // Đảm bảo sức khỏe không âm
+        // Áp dụng multiplier cho EXP
+        float finalExp = exp * expMultiplier;
+
+        currentMana += finalExp;
+        currentMana = Mathf.Clamp(currentMana, 0, maxMana);
         uiController.UpdateMana(currentMana, maxMana);
+
         if (currentMana >= 100)
         {
             //Debug.Log("Nhân vật đã lên cấp");
-            //Die(); // Gọi hàm xử lý khi nhân vật chết
             FindObjectOfType<UpgradeManager>().ShowUpgradeOptions(); // Hiển thị tùy chọn nâng cấp
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
@@ -92,6 +105,7 @@ public class PlayerController : MonoBehaviour
             TotalHealthPlayer(0f);
         }
     }
+
     public void IncreaseMaxHealth(float amount)
     {
         maxHealth += amount;
@@ -101,10 +115,20 @@ public class PlayerController : MonoBehaviour
         uiController.UpdateMana(currentMana, maxMana);
         LevelUP(1);
     }
+
+    // Thêm hàm mới để tăng EXP multiplier
+    public void IncreaseEXPMultiplier(float bonusPercent)
+    {
+        expMultiplier += bonusPercent; // bonusPercent = 0.1f để tăng 10%
+        currentMana = 0;
+        uiController.UpdateMana(currentMana, maxMana);
+        LevelUP(1);
+        Debug.Log("EXP Multiplier hiện tại: " + (expMultiplier * 100) + "%");
+    }
+
     public void LevelUP(float levelUp)
     {
         levelPlayer += levelUp;
         uiController.UpdateLevel(levelPlayer);
     }
 }
-

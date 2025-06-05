@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -26,7 +26,9 @@ public class UIController : MonoBehaviour
     {
         manaSlider.maxValue = max;
         manaSlider.value = current;
-        mp.text = $"{current}/{max}";
+
+        string displayText = $"{current}/{max}";
+        mp.text = displayText;
     }
 
     public void UpdateLevel(float level)

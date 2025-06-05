@@ -7,22 +7,22 @@ public class UpgradeManager : MonoBehaviour
 {
     public Image[] upgradeImages;
     private PlayerController playerController;
+
     void Start()
     {
         foreach (Image img in upgradeImages)
         {
             Button button = img.GetComponent<Button>();
-            button.onClick.AddListener(() =>
-            {
-
-            });
+            button.onClick.AddListener(() => OnUpgradeSelected(img));
         }
+
         playerController = FindObjectOfType<PlayerController>();
     }
+
     void Update()
     {
-
     }
+
     public void ShowUpgradeOptions()
     {
         foreach (Image img in upgradeImages)
@@ -31,12 +31,20 @@ public class UpgradeManager : MonoBehaviour
         }
         Time.timeScale = 0f;
     }
+
     public void OnUpgradeSelected(Image selectedImage)
     {
-        if(selectedImage == upgradeImages[0])
+        if (selectedImage == upgradeImages[0])
         {
-            UpdateHeath();
+            UpdateHealth();
         }
+        else if (selectedImage == upgradeImages[1])
+        {
+            // Tăng 10% EXP
+            UpdateEXPBonus();
+            Debug.Log("Upgrade EXP +10% selected");
+        }
+
         Debug.Log("Upgrade selected: " + selectedImage.name);
 
         foreach (Image img in upgradeImages)
@@ -45,7 +53,8 @@ public class UpgradeManager : MonoBehaviour
         }
         Time.timeScale = 1f;
     }
-    public void UpdateHeath()
+
+    public void UpdateHealth()
     {
         if (playerController != null)
         {
@@ -54,6 +63,18 @@ public class UpgradeManager : MonoBehaviour
         else
         {
             Debug.LogWarning("Lỗi cộng máu :((");
+        }
+    }
+
+    public void UpdateEXPBonus()
+    {
+        if (playerController != null)
+        {
+            playerController.IncreaseEXPMultiplier(0.1f); // Tăng 10%
+        }
+        else
+        {
+            Debug.LogWarning("Lỗi tăng EXP :((");
         }
     }
 }
