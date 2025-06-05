@@ -126,6 +126,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log("EXP Multiplier hiện tại: " + (expMultiplier * 100) + "%");
     }
 
+    public void IncreaseWeapon(float updateSpeedWeapon)
+    {
+        rotationSpeed += updateSpeedWeapon;
+        currentHealth = maxHealth;
+        uiController.UpdateHealth(currentHealth, maxHealth);
+        currentMana = 0;
+        uiController.UpdateMana(currentMana, maxMana);
+        LevelUP(1);
+    }
     public void LevelUP(float levelUp)
     {
         levelPlayer += levelUp;

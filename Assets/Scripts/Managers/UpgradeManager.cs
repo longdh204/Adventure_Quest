@@ -42,7 +42,9 @@ public class UpgradeManager : MonoBehaviour
         {
             // Tăng 10% EXP
             UpdateEXPBonus();
-            Debug.Log("Upgrade EXP +10% selected");
+        }else if (selectedImage == upgradeImages[2])
+        {
+            UpdateSpeedWeapon();
         }
 
         Debug.Log("Upgrade selected: " + selectedImage.name);
@@ -65,7 +67,6 @@ public class UpgradeManager : MonoBehaviour
             Debug.LogWarning("Lỗi cộng máu :((");
         }
     }
-
     public void UpdateEXPBonus()
     {
         if (playerController != null)
@@ -75,6 +76,17 @@ public class UpgradeManager : MonoBehaviour
         else
         {
             Debug.LogWarning("Lỗi tăng EXP :((");
+        }
+    }
+    public void UpdateSpeedWeapon()
+    {
+        if (playerController != null)
+        {
+            playerController.IncreaseWeapon(100f); // Tăng 10%
+        }
+        else
+        {
+            Debug.LogWarning("Lỗi cộng tốc độ quay của vũ khí :((");
         }
     }
 }

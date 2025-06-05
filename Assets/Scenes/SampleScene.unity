@@ -19832,7 +19832,7 @@ MonoBehaviour:
   moveSpeed: 7
   detectionRadius: 5
   weapon: {fileID: 1257401255}
-  rotationSpeed: 1000
+  rotationSpeed: 100
   maxHealth: 100
   currentHealth: 0
   maxMana: 100
