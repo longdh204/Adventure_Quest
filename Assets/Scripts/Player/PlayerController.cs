@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void TotalHealthPlayer(float damage)
+    public void TotalHealthPlayer(float damage)
     {
         currentHealth -= damage; // Giảm sức khỏe hiện tại theo lượng sát thương
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Đảm bảo sức khỏe không âm
@@ -98,13 +98,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            TotalHealthPlayer(0f);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Enemy"))
+    //    {
+    //        TotalHealthPlayer(10f);
+    //    }
+    //}
 
     public void IncreaseMaxHealth(float amount)
     {
