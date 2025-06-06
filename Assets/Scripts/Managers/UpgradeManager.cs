@@ -21,11 +21,11 @@ public class UpgradeManager : MonoBehaviour
     void Update()
     {
     }
-    public void ShowUpgradeOptions()
+    public void ShowUpgradeOptions(List<int> imageIndexes)
     {
-        foreach (Image img in upgradeImages)
+        for (int i = 0; i < upgradeImages.Length; i++)
         {
-            img.gameObject.SetActive(true);
+            upgradeImages[i].gameObject.SetActive(imageIndexes.Contains(i));
         }
         Time.timeScale = 0f;
     }

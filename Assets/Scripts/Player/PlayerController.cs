@@ -89,8 +89,24 @@ public class PlayerController : MonoBehaviour
 
         if (currentMana >= 100)
         {
+            LevelUP(1); // Tăng cấp độ khi mana đạt 100
             //Debug.Log("Nhân vật đã lên cấp");
-            FindObjectOfType<UpgradeManager>().ShowUpgradeOptions(); // Hiển thị tùy chọn nâng cấp
+            if (levelPlayer < 5)
+            {
+                // chọn mặc định ảnh 0, 1, 22
+                FindObjectOfType<UpgradeManager>().ShowUpgradeOptions(new List<int> { 0, 1, 2 }); // Hiển thị tùy chọn nâng cấp
+                // Hoặc ngẫu nhiên 3 ảnh bất kỳ nếu muốn
+                // List<int> allIndexes = new List<int>();
+                // for (int i = 0; i < FindObjectOfType<UpgradeManager>().upgradeImages.Length; i++)
+                //     allIndexes.Add(i);
+                // var randomIndexes = allIndexes.OrderBy(x => Random.value).Take(3).ToList();
+                // FindObjectOfType<UpgradeManager>().ShowUpgradeOptions(randomIndexes);
+            }
+            else if (levelPlayer >= 5 && levelPlayer < 10)
+            {
+                // Chọn mặc định ảnh 0, 1, 2
+                FindObjectOfType<UpgradeManager>().ShowUpgradeOptions(new List<int> { 3, 4, 5 }); // Hiển thị tùy chọn nâng cấp
+            }
         }
     }
     public void IncreaseMaxHealth(float amount)
@@ -100,7 +116,6 @@ public class PlayerController : MonoBehaviour
         uiController.UpdateHealth(currentHealth, maxHealth);
         currentMana = 0;
         uiController.UpdateMana(currentMana, maxMana);
-        LevelUP(1);
     }
     // Thêm hàm mới để tăng EXP multiplier
     public void IncreaseEXPMultiplier(float bonusPercent)
@@ -108,7 +123,6 @@ public class PlayerController : MonoBehaviour
         expMultiplier += bonusPercent; // bonusPercent = 0.1f để tăng 10%
         currentMana = 0;
         uiController.UpdateMana(currentMana, maxMana);
-        LevelUP(1);
         Debug.Log("EXP Multiplier hiện tại: " + (expMultiplier * 100) + "%");
     }
 
@@ -119,7 +133,6 @@ public class PlayerController : MonoBehaviour
         uiController.UpdateHealth(currentHealth, maxHealth);
         currentMana = 0;
         uiController.UpdateMana(currentMana, maxMana);
-        LevelUP(1);
     }
     public void LevelUP(float levelUp)
     {
