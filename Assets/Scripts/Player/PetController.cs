@@ -6,6 +6,10 @@ public class PetController : MonoBehaviour
 {
     private Transform enemy;
     [SerializeField] private float rotationSpeed = 5f;
+    public GameObject bulletPrefab; // Prefab của viên đạn
+    public Transform firePoint; // Vị trí bắn đạn
+    public float fireRate = 1f; // Tốc độ bắn
+    private float nextFireTime = 0f;
 
     void Start()
     {
@@ -40,6 +44,18 @@ public class PetController : MonoBehaviour
                 transform.localScale = new Vector3(-1, 1, 1); // Lật mặt sang trái
             else
                 transform.localScale = new Vector3(1, 1, 1);  // Quay mặt sang phải
+
+            // Bắn đạn liên tục
+            if (Time.time >= nextFireTime)
+            {
+                Fire();
+                nextFireTime = Time.time + fireRate;
+            }
         }
+    }
+    private void Fire()
+    {
+        // Tạo viên đạn tại điểm bắn
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }
