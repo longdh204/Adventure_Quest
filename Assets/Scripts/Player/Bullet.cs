@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy")) // Kiểm tra nếu va chạm với quái
         {
-            Destroy(collision.gameObject); // Xóa quái
             Destroy(gameObject); // Xóa viên đạn
         }
     }

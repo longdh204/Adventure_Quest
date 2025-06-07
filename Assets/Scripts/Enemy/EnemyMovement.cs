@@ -95,6 +95,13 @@ public class EnemyMovement : MonoBehaviour
                 playerController.TotalHealthPlayer(10f);
             }
             PassAway();
+        }else if( collision.CompareTag("Bullet"))
+        {
+            PassAway();
+            if (playerController != null)
+            {
+                playerController.TotalEXPPlayer(5f);
+            }
         }
     }
 }

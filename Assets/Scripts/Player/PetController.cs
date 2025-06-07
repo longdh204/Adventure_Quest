@@ -10,11 +10,11 @@ public class PetController : MonoBehaviour
     public Transform firePoint; // Vị trí bắn đạn
     public float fireRate = 1f; // Tốc độ bắn
     private float nextFireTime = 0f;
-
+    [SerializeField] private ParticleSystem startBullet;
     void Start()
     {
         // Tìm kẻ địch trong scene
-        enemy = GameObject.FindGameObjectWithTag("Enemy").transform; // Giả sử kẻ địch có tag là "Enemy"
+        // enemy = GameObject.FindGameObjectWithTag("Enemy").transform; // Giả sử kẻ địch có tag là "Enemy"
     }
 
     void Update()
@@ -57,5 +57,6 @@ public class PetController : MonoBehaviour
     {
         // Tạo viên đạn tại điểm bắn
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        startBullet.Play(); // Phát hiệu ứng bắn
     }
 }
