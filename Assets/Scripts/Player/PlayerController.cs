@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float detectionRadius = 5f; // ban kinh phat hien va cham
     [SerializeField] private GameObject weapon;
-    [SerializeField] private float rotationSpeed = 100f;
+    public float rotationSpeed = 100f;
 
     public float maxHealth = 100f;
     public float currentHealth;
