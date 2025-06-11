@@ -14,6 +14,11 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI mp;
 
     public TextMeshProUGUI numberCandy;
+    public GameObject pausePanel; // Panel nền đen
+    public Button pauseButton; // Nút pause
+    public Sprite pauseSprite; // Hình ảnh nút Pause
+    public Sprite continueSprite; // Hình ảnh nút Continue
+    private bool isPaused = false;
 
     [Header("Level")]
     public TextMeshProUGUI currentLevel;
@@ -22,6 +27,10 @@ public class UIController : MonoBehaviour
     {
         playerController = FindObjectOfType<PlayerController>();
         numberCandy.text = $"{playerController.totalCandyCurrent}";
+
+        pauseButton.onClick.AddListener(TogglePause);
+        UpdateButtonIcon();
+        pausePanel.SetActive(false); // Ẩn panel nền đen lúc đầu
     }
     void Update()
     {
@@ -46,5 +55,34 @@ public class UIController : MonoBehaviour
     public void UpdateLevel(float level)
     {
         currentLevel.text = $"{level}";
+    }
+        public void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0f; // Tạm dừng game
+            pausePanel.SetActive(true); // Hiện nền đen
+        }
+        else
+        {
+            Time.timeScale = 1f; // Tiếp tục game
+            pausePanel.SetActive(false); // Ẩn nền đen
+        }
+
+        UpdateButtonIcon();
+    }
+
+    private void UpdateButtonIcon()
+    {
+        if (isPaused)
+        {
+            pauseButton.image.sprite = continueSprite;
+        }
+        else
+        {
+            pauseButton.image.sprite = pauseSprite;
+        }
     }
 }
