@@ -8,18 +8,16 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private UIController uiController;
     [SerializeField] private MobileJoystick playerJoystick;
-    private Rigidbody2D rig;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float detectionRadius = 5f; // ban kinh phat hien va cham
     [SerializeField] private GameObject weapon;
+    private Rigidbody2D rig;
     public float rotationSpeed = 100f;
-
     public float maxHealth = 100f;
     public float currentHealth;
     public float maxMana = 100f;
     public float currentMana;
     public float levelPlayer = 1;
-
     public float expMultiplier = 1f; // Bắt đầu từ 1 (100%)
     public float totalCandyCurrent;
 

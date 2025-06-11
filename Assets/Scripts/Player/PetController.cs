@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PetController : MonoBehaviour
 {
-    private Transform enemy;
     [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private ParticleSystem startBullet;
+    private float nextFireTime = 0f;
+    private Transform enemy;
     public GameObject bulletPrefab; // Prefab của viên đạn
     public Transform firePoint; // Vị trí bắn đạn
     public float fireRate = 1f; // Tốc độ bắn
-    private float nextFireTime = 0f;
-    [SerializeField] private ParticleSystem startBullet;
     void Start()
     {
         // Tìm kẻ địch trong scene

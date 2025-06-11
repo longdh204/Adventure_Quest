@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Player player;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float playerDetectionRadius;
     [SerializeField] private float expEnemy;
     [SerializeField] private ParticleSystem enemyDieEffect;
     [SerializeField] private bool gizmos;
     private PlayerController playerController;
-    public GameObject itemDropPrefab;
-
+    private Player player;
     private bool isDead = false;
-
+    public GameObject itemDropPrefab;
+    public float dropChance = 0.5f; // Tỷ lệ rơi vật phẩm (50%)
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
@@ -39,7 +38,6 @@ public class EnemyMovement : MonoBehaviour
         Vector2 targetPosition = (Vector2)transform.position + direction * moveSpeed * Time.deltaTime;
         transform.position = targetPosition;
     }
-
     private void TryAttack()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
@@ -49,7 +47,6 @@ public class EnemyMovement : MonoBehaviour
             AttackPlayer();
         }
     }
-
     private void AttackPlayer()
     {
         if (!isDead && playerController != null)
@@ -57,7 +54,6 @@ public class EnemyMovement : MonoBehaviour
             PassAway();
         }
     }
-
     private void PassAway()
     {
         if (isDead) return;
@@ -65,14 +61,12 @@ public class EnemyMovement : MonoBehaviour
         enemyDieEffect.transform.SetParent(null);
         enemyDieEffect.Play();
         Destroy(gameObject);
-
         // Tạo vật phẩm rơi ra tại vị trí quái chết
-        if (itemDropPrefab != null)
+        if (itemDropPrefab != null && Random.value <= dropChance)
         {
             Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
         }
     }
-
     private void OnDrawGizmos()
     {
         if (!gizmos)
@@ -82,7 +76,6 @@ public class EnemyMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, playerDetectionRadius);
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isDead) return;

@@ -3,17 +3,15 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
+    private CameraController cameraController; // Tham chiếu đến CameraController
     public GameObject enemyPrefab; // Prefab của quái
     public GameObject warningPrefabs; // Prefab của cảnh báo
     public float spawnInterval = 1f; // Khoảng thời gian giữa các lần sinh quái
-    private CameraController cameraController; // Tham chiếu đến CameraController
-
     void Start()
     {
         cameraController = FindObjectOfType<CameraController>(); // Tìm CameraController trong scene
         StartCoroutine(SpawnEnemies()); // Bắt đầu coroutine sinh quái
     }
-
     IEnumerator SpawnEnemies()
     {
         while (true) // Vòng lặp vô hạn

@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
-    public Image[] upgradeImages;
     private PlayerController playerController;
-
+    public Image[] upgradeImages;
     void Start()
     {
         foreach (Image img in upgradeImages)

@@ -769,12 +769,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3366eee33f3d04ba2405cba74704e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1390048816}
-  slideSpeed: 2000
   currentHP: {fileID: 1711733758}
   currentEXP: {fileID: 1943827999}
   currentWeaponSpeed: {fileID: 721903887}
   expBonusexpBonus: {fileID: 1534736977}
+  panel: {fileID: 1390048816}
+  slideSpeed: 2000
 --- !u!1 &28775857
 GameObject:
   m_ObjectHideFlags: 0
@@ -17946,10 +17946,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
+  startBullet: {fileID: 970413706}
   bulletPrefab: {fileID: 1224331858412239274, guid: 81fd0946583a034419eae33852c87610, type: 3}
   firePoint: {fileID: 1679493462}
   fireRate: 1
-  startBullet: {fileID: 970413706}
 --- !u!1 &701179095
 GameObject:
   m_ObjectHideFlags: 0
@@ -32294,7 +32294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1637395524
 RectTransform:
   m_ObjectHideFlags: 0

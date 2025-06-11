@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class SlidingPanelController : MonoBehaviour
 {
-    public RectTransform panel; // Kéo thả panel vào đây trong Inspector
-    public float slideSpeed = 3000f; // Tốc độ trượt
+    private PlayerController playerController;
     private Vector2 hiddenPosition;
     private Vector2 visiblePosition;
     private bool isVisible = false;
@@ -14,8 +13,8 @@ public class SlidingPanelController : MonoBehaviour
     public TextMeshProUGUI currentEXP;
     public TextMeshProUGUI currentWeaponSpeed;
     public TextMeshProUGUI expBonusexpBonus;
-    private PlayerController playerController;
-
+    public RectTransform panel; // Kéo thả panel vào đây trong Inspector
+    public float slideSpeed = 3000f; // Tốc độ trượt
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
