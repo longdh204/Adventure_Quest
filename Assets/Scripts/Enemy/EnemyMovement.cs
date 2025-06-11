@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private ParticleSystem enemyDieEffect;
     [SerializeField] private bool gizmos;
     private PlayerController playerController;
+    public GameObject itemDropPrefab;
 
     private bool isDead = false;
 
@@ -64,6 +65,12 @@ public class EnemyMovement : MonoBehaviour
         enemyDieEffect.transform.SetParent(null);
         enemyDieEffect.Play();
         Destroy(gameObject);
+
+        // Tạo vật phẩm rơi ra tại vị trí quái chết
+        if (itemDropPrefab != null)
+        {
+            Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     private void OnDrawGizmos()

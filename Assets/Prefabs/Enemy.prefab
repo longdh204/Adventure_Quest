@@ -52,6 +52,7 @@ MonoBehaviour:
   expEnemy: 0
   enemyDieEffect: {fileID: 321312487856431170}
   gizmos: 1
+  itemDropPrefab: {fileID: 3666183604798585389, guid: 910946cfe22a1c24dac6ee68e7e9a407, type: 3}
 --- !u!61 &8939446497208556749
 BoxCollider2D:
   m_ObjectHideFlags: 0

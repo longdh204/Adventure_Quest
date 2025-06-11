@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Weapon1
   - Bullet
+  - Candy
   layers:
   - Default
   - TransparentFX

@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public float levelPlayer = 1;
 
     public float expMultiplier = 1f; // Bắt đầu từ 1 (100%)
+    public float totalCandyCurrent;
 
     private void Start()
     {
@@ -138,5 +139,17 @@ public class PlayerController : MonoBehaviour
     {
         levelPlayer += levelUp;
         uiController.UpdateLevel(levelPlayer);
+    }
+    public void Candy()
+    {
+
+    }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Candy"))
+        {
+            totalCandyCurrent += 1;
+            Destroy(other.gameObject); // Xóa kẹo sau khi ăn
+        }
     }
 }

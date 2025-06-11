@@ -6,15 +6,27 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    private PlayerController playerController;
     [Header("Health and EXP")]
     public Slider healthSlider;
     public Slider manaSlider;
     public TextMeshProUGUI hp;
     public TextMeshProUGUI mp;
 
+    public TextMeshProUGUI numberCandy;
+
     [Header("Level")]
     public TextMeshProUGUI currentLevel;
 
+    void Start()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+        numberCandy.text = $"{playerController.totalCandyCurrent}";
+    }
+    void Update()
+    {
+        numberCandy.text = $"{playerController.totalCandyCurrent}";
+    }
     public void UpdateHealth(float current, float max)
     {
         healthSlider.maxValue = max;
