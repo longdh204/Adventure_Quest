@@ -66,10 +66,10 @@ public class SlidingPanelController : MonoBehaviour
     {
         if (playerController != null)
         {
-            currentHP.text = $"HP: {playerController.currentHealth}/{playerController.maxHealth}";
-            currentEXP.text = $"EXP: {playerController.currentMana}/{playerController.maxMana}";
-            currentWeaponSpeed.text = $"Weapon Speed: {playerController.rotationSpeed}";
-            expBonusexpBonus.text = $"EXP Bonus: {playerController.expMultiplier * 100}%";
+            currentHP.text = $"{playerController.currentHealth}/{playerController.maxHealth}";
+            currentEXP.text = $"{playerController.currentMana}/{playerController.maxMana}";
+            currentWeaponSpeed.text = $"{playerController.rotationSpeed}";
+            expBonusexpBonus.text = $"{playerController.expMultiplier * 100}%";
         }
     }
 }
