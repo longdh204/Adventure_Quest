@@ -6,27 +6,24 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    private bool isPaused = false;
     private PlayerController playerController;
-    [Header("Health and EXP")]
     public Slider healthSlider;
     public Slider manaSlider;
     public TextMeshProUGUI hp;
     public TextMeshProUGUI mp;
-
-    public TextMeshProUGUI numberCandy;
+    public TextMeshProUGUI numberCandy, numberCandyShop;
     public GameObject pausePanel; // Panel nền đen
     public Button pauseButton; // Nút pause
     public Sprite pauseSprite; // Hình ảnh nút Pause
     public Sprite continueSprite; // Hình ảnh nút Continue
-    private bool isPaused = false;
-
-    [Header("Level")]
     public TextMeshProUGUI currentLevel;
 
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
         numberCandy.text = $"{playerController.totalCandyCurrent}";
+        numberCandyShop.text = $"{playerController.totalCandyCurrent}";
 
         pauseButton.onClick.AddListener(TogglePause);
         UpdateButtonIcon();
@@ -35,6 +32,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         numberCandy.text = $"{playerController.totalCandyCurrent}";
+        numberCandyShop.text = $"{playerController.totalCandyCurrent}";
     }
     public void UpdateHealth(float current, float max)
     {
