@@ -90,9 +90,13 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (collision.CompareTag("Player"))
         {
+            float damage = 10f;
+            if (CompareTag("Enemy")) damage = 10f;
+            else if (CompareTag("Enemy2")) damage = 20f;
+            else if (CompareTag("Enemy3")) damage = 30f;
             if (playerController != null)
             {
-                playerController.TotalHealthPlayer(10f);
+                playerController.TotalHealthPlayer(damage);
             }
             PassAway();
         }else if( collision.CompareTag("Bullet"))

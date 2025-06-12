@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1725198919295029953}
   - component: {fileID: 8939446497208556749}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   enemyDieEffect: {fileID: 321312487856431170}
   gizmos: 1
   itemDropPrefab: {fileID: 3666183604798585389, guid: 910946cfe22a1c24dac6ee68e7e9a407, type: 3}
+  dropChance: 0.1
 --- !u!61 &8939446497208556749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -82,7 +83,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.115189075, y: 2.5572}

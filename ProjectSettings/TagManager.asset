@@ -8,6 +8,8 @@ TagManager:
   - Weapon1
   - Bullet
   - Candy
+  - Enemy2
+  - Enemy3
   layers:
   - Default
   - TransparentFX

@@ -13,8 +13,9 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI hp;
     public TextMeshProUGUI mp;
     public TextMeshProUGUI numberCandy, numberCandyShop;
-    public GameObject pausePanel; // Panel nền đen
+    public GameObject pausePanel, uiShop; // Panel nền đen, UI shop
     public Button pauseButton; // Nút pause
+    public Button shopButton, cancelShopButton; // Nút shop
     public Sprite pauseSprite; // Hình ảnh nút Pause
     public Sprite continueSprite; // Hình ảnh nút Continue
     public TextMeshProUGUI currentLevel;
@@ -28,6 +29,9 @@ public class UIController : MonoBehaviour
         pauseButton.onClick.AddListener(TogglePause);
         UpdateButtonIcon();
         pausePanel.SetActive(false); // Ẩn panel nền đen lúc đầu
+        shopButton.onClick.AddListener(ToggleShop); // Thêm sự kiện click cho nút shop
+        uiShop.SetActive(false);     // Ẩn UI shop lúc đầu
+        cancelShopButton.onClick.AddListener(CloseShop); // Thêm sự kiện click cho nút đóng shop
     }
     void Update()
     {
@@ -82,5 +86,15 @@ public class UIController : MonoBehaviour
         {
             pauseButton.image.sprite = pauseSprite;
         }
+    }
+
+    public void ToggleShop()
+    {
+        uiShop.SetActive(!uiShop.activeSelf);
+    }
+
+    public void CloseShop()
+    {
+        uiShop.SetActive(false);
     }
 }
