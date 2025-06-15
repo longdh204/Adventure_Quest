@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public float levelPlayer = 1;
     public float expMultiplier = 1f; // Bắt đầu từ 1 (100%)
     public float totalCandyCurrent;
+    // public GameObject // Removed incomplete declaration
+    public GameObject pet, localWeapon; // Thêm biến pet để lưu trữ pet của người chơi
 
     private void Start()
     {
@@ -148,6 +150,33 @@ public class PlayerController : MonoBehaviour
         {
             totalCandyCurrent += 1;
             Destroy(other.gameObject); // Xóa kẹo sau khi ăn
+        }
+    }
+    public void chossePet()
+    {
+        pet.SetActive(true); // Kích hoạt pet khi người chơi chọn
+        currentHealth = maxHealth;
+        uiController.UpdateHealth(currentHealth, maxHealth);
+        currentMana = 0;
+        uiController.UpdateMana(currentMana, maxMana);
+    }
+    public void SetLocalWeapon()
+    {
+        if (localWeapon != null)
+        {
+            // Giữ nguyên localPosition.x, localPosition.z; set localPosition.y = -10
+            Vector3 localPos = localWeapon.transform.localPosition;
+            localPos.y = -10f;
+            localWeapon.transform.localPosition = localPos;
+
+            // Giữ nguyên localEulerAngles.x, localEulerAngles.y; set localEulerAngles.z = -106.04
+            Vector3 localRot = localWeapon.transform.localEulerAngles;
+            localRot.z = -106.04f;
+            localWeapon.transform.localEulerAngles = localRot;
+            currentHealth = maxHealth;
+            uiController.UpdateHealth(currentHealth, maxHealth);
+            currentMana = 0;
+            uiController.UpdateMana(currentMana, maxMana);
         }
     }
 }

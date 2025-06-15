@@ -39,9 +39,24 @@ public class UpgradeManager : MonoBehaviour
         {
             // Tăng 10% EXP
             UpdateEXPBonus();
-        }else if (selectedImage == upgradeImages[2])
+        }
+        else if (selectedImage == upgradeImages[2])
         {
             UpdateSpeedWeapon();
+        }
+        else if (selectedImage == upgradeImages[3])
+        {
+            PetUp();
+        }else if (selectedImage == upgradeImages[4])
+        {
+            if (playerController != null)
+            {
+                playerController.SetLocalWeapon();
+            }
+            else
+            {
+                Debug.LogWarning("Lỗi tăng phạm vi và vị trí vũ khí :((");
+            }
         }
 
         Debug.Log("Upgrade selected: " + selectedImage.name);
@@ -84,6 +99,17 @@ public class UpgradeManager : MonoBehaviour
         else
         {
             Debug.LogWarning("Lỗi cộng tốc độ quay của vũ khí :((");
+        }
+    }
+    public void PetUp()
+    {
+        if (playerController != null)
+        {
+            playerController.chossePet();
+        }
+        else
+        {
+            Debug.LogWarning("Lỗi cộng pet :((");
         }
     }
 }

@@ -3793,6 +3793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1224331858412239274, guid: 81fd0946583a034419eae33852c87610, type: 3}
   poolSize: 50
+  activeBullets: []
 --- !u!4 &177459736
 Transform:
   m_ObjectHideFlags: 0
@@ -25387,7 +25388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &691794069
 Transform:
   m_ObjectHideFlags: 0
@@ -25420,7 +25421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 5
   startBullet: {fileID: 970413706}
-  enemyCheckInterval: 0.1
+  bulletPrefab: {fileID: 1224331858412239274, guid: 81fd0946583a034419eae33852c87610, type: 3}
   firePoint: {fileID: 1679493462}
   fireRate: 1
 --- !u!1 &701179095
@@ -36244,7 +36245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1073902499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36688,6 +36689,8 @@ MonoBehaviour:
   levelPlayer: 1
   expMultiplier: 1
   totalCandyCurrent: 0
+  pet: {fileID: 691794068}
+  localWeapon: {fileID: 1657737155}
 --- !u!70 &1103391140
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -41688,7 +41691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Weapon1
+  m_text: Show Pet
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -47330,13 +47333,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657737155}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.8480338, w: 0.5299423}
-  m_LocalPosition: {x: -2.3908923, y: -5.112107, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7988455, w: 0.6015363}
+  m_LocalPosition: {x: -1.39, y: -5.65, z: 0}
   m_LocalScale: {x: 1.697564, y: 1.697564, z: 1.6975642}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1257401256}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -115.997}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -106.04}
 --- !u!212 &1657737157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51825,7 +51828,7 @@ GameObject:
   - component: {fileID: 1849224008}
   - component: {fileID: 1849224006}
   m_Layer: 5
-  m_Name: Level 5 Weapon1
+  m_Name: Level Pet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52186,7 +52189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Weapon2
+  m_text: rotating weapon scope
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

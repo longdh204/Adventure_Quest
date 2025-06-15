@@ -2,60 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Script cho viên đạn với pooling support
 public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
-    public float lifetime = 5f; // Thời gian sống của viên đạn
-    private Rigidbody2D rb;
-    private float timer;
-
-    void Awake()
+    public Rigidbody2D rb;
+    [SerializeField] private float lifetime = 4f; // Thời gian sống của viên đạn
+    private void Awake()
+    {
+        // Xóa viên đạn sau một khoảng thời gian nhất định
+        Destroy(gameObject, lifetime);
+    }
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.up * speed; // Set the bullet's velocity in the direction it's facing
     }
 
-    // Được gọi khi viên đạn được kích hoạt từ pool
-    public void Initialize(Vector3 position, Vector3 direction)
-    {
-        transform.position = position;
-        transform.up = direction;
-        
-        // Reset rigidbody state
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        
-        // Set new velocity
-        rb.velocity = direction * speed;
-        timer = 0f;
-        gameObject.SetActive(true);
-    }
-
+    // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= lifetime)
-        {
-            ReturnToPool();
-        }
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            // Thay vì Destroy, trả về pool
-            ReturnToPool();
-        }
     }
-
-    private void ReturnToPool()
+        private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Reset rigidbody trước khi return về pool
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        
-        gameObject.SetActive(false);
-        BulletPool.Instance.ReturnBullet(this);
+        if (collision.CompareTag("Enemy")) // Kiểm tra nếu va chạm với quái
+        {
+            Destroy(gameObject); // Xóa viên đạn
+        }
     }
 }
