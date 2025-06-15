@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UpgradeManager : MonoBehaviour
 {
     private PlayerController playerController;
+    private PetController petController;
     public Image[] upgradeImages;
     void Start()
     {
@@ -16,6 +17,7 @@ public class UpgradeManager : MonoBehaviour
         }
 
         playerController = FindObjectOfType<PlayerController>();
+        petController = FindObjectOfType<PetController>();
     }
     void Update()
     {
@@ -56,6 +58,21 @@ public class UpgradeManager : MonoBehaviour
             else
             {
                 Debug.LogWarning("Lỗi tăng phạm vi và vị trí vũ khí :((");
+            }
+        }else if (selectedImage == upgradeImages[5])
+        {
+            // Tìm PetController trong scene
+            petController = FindObjectOfType<PetController>();
+            
+            if (petController != null)
+            {
+                Debug.Log($"FireRate trước khi giảm: {petController.fireRate}");
+                petController.PlusFireRate(0.7f);
+                Debug.Log($"FireRate sau khi giảm: {petController.fireRate}");
+            }
+            else
+            {
+                Debug.LogError("Không tìm thấy PetController trong scene!");
             }
         }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PetController : MonoBehaviour
 {
+    private PlayerController playerController; // Tham chiếu đến PlayerController
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private ParticleSystem startBullet;
     private float nextFireTime = 0f;
@@ -15,6 +16,7 @@ public class PetController : MonoBehaviour
     {
         // Tìm kẻ địch trong scene
         // enemy = GameObject.FindGameObjectWithTag("Enemy").transform; // Giả sử kẻ địch có tag là "Enemy"
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     void Update()
@@ -58,5 +60,15 @@ public class PetController : MonoBehaviour
         // Tạo viên đạn tại điểm bắn
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         startBullet.Play(); // Phát hiệu ứng bắn
+    }
+    public void PlusFireRate(float chiso)
+    {
+        Debug.Log($"PlusFireRate được gọi với chiso = {chiso}");
+        Debug.Log($"FireRate trước: {fireRate}");
+        
+        fireRate -= chiso;
+        fireRate = Mathf.Max(fireRate, 0.1f);
+        
+        Debug.Log($"FireRate sau: {fireRate}");
     }
 }

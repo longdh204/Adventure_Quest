@@ -173,10 +173,14 @@ public class PlayerController : MonoBehaviour
             Vector3 localRot = localWeapon.transform.localEulerAngles;
             localRot.z = -106.04f;
             localWeapon.transform.localEulerAngles = localRot;
-            currentHealth = maxHealth;
-            uiController.UpdateHealth(currentHealth, maxHealth);
-            currentMana = 0;
-            uiController.UpdateMana(currentMana, maxMana);
+            Macdinhchiso();
         }
+    }
+    public void Macdinhchiso()
+    {
+        currentHealth = maxHealth;
+        uiController.UpdateHealth(currentHealth, maxHealth);
+        currentMana = 0;
+        uiController.UpdateMana(currentMana, maxMana);
     }
 }
