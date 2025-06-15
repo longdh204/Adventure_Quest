@@ -91,10 +91,18 @@ public class UIController : MonoBehaviour
     public void ToggleShop()
     {
         uiShop.SetActive(!uiShop.activeSelf);
+        Time.timeScale = uiShop.activeSelf ? 0f : 1f; // Dừng game khi shop mở, tiếp tục khi shop tắt
+    }
+
+    public void OpenShop()
+    {
+        uiShop.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void CloseShop()
     {
         uiShop.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
